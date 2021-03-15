@@ -38,11 +38,17 @@ with open("output.mid", 'wb') as outf:
 
 
 
+NOTES = list(range(255))
+TOTAL_NOTES = len(NOTES)
+
+
 def instructions(func):
     from dis import Bytecode
 
     dis = Bytecode(func)
     print(dis.dis())
+
+    return [ord(i) % TOTAL_NOTES for i in dis.dis() if i.strip()]
 
     instructions_with_line_numbers = [
         line.split()
@@ -67,3 +73,25 @@ def music(a, b, c):
     a + b * c ** a
 
 print(instructions(music))
+
+
+notes = instructions(music)
+
+mf = MIDIFile(1)     # only 1 track
+start_time = 0
+mf.addTrackName(track, start_time, "Sample Track")
+mf.addTempo(track, start_time, 120)
+
+for i, note in enumerate(notes):
+    mf.addNote(
+        track=0,
+        channel=0,
+        pitch=NOTES[note],
+        time=i / 3.0,
+        duration=1 / 3.0,
+        volume=100
+    )
+
+
+with open("output.mid", 'wb') as outf:
+    mf.writeFile(outf)
