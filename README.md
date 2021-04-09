@@ -12,6 +12,13 @@ in a Python module to its corresponding bytecode which it then converts to MIDI
 notes along a predefined scale. It then generates a MIDI file from them or plays
 them upon generation.
 
+### Installation
+
+```python
+$ pip install stochastis
+$ pip install git+https://github.com/Pebaz/stochastis
+```
+
 ### Usage
 
 ```python
