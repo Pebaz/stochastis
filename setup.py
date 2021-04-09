@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
 	name='stochastis',
-	version='1.0.0',
+	version='1.0.1',
 	license="MIT",
 	description='Convert Python code into music to hear algorithms',
 	long_description=open('README.md').read(),

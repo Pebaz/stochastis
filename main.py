@@ -89,6 +89,8 @@ def play_midi_file(midi_filename):
         pygame.mixer.music.fadeout(1000)
         pygame.mixer.music.stop()
         raise SystemExit
+    
+    raise SystemExit
 
 
 def output_music(module_filename, output_filename):
